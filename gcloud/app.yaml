@@ -1,1 +1,25 @@
-dvd
+application: you-app-name-here
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /(.*\.html)
+  mime_type: text/html
+  static_files: static/\1
+  upload: static/(.*\.html)
+  
+- url: /(.+)/
+  static_files: static/\1/index.html
+  upload: static/(.+)/index.html
+  expiration: "15m"
+
+- url: /(.+)
+  static_files: static/\1/index.html
+  upload: static/(.+)/index.html
+  expiration: "15m"
+
+# site root
+- url: /
+  static_files: static/index.html
+  upload: static/index.html
